@@ -1,16 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTodo } from '../actions/index';
+import todoReducer from '../reducer/Todoreducer.js';
+
+
+
 
 const Todo = () => {
+  const [inputData, setInputData] = useState(" ");
+  const dispatch = useDispatch();
+
+  const list = useSelector((state) =>
+    state.todoReducer.list
+  )
+
+  console.log(list);
+
+
+
+
   return (
     <>
-      <div className='backdrop'>
-<div className='center_div'>
-    <h2> to do list </h2>
-    <br />
-    <input type="text" />
-    <button>+</button>
-</div>
-
+      <div className="backdrop">
+        <h1>Todo List</h1>
+        <div className="container">
+          <input type="text"
+            value={inputData}
+            onChange={(event) => setInputData(event.target.value)}
+          />
+          <button onClick={() => { dispatch(addTodo(inputData), setInputData(" ")) }}>+</button>
+          {
+            list.map((elem) => {
+              return (
+                <div className='shoeItems' key={elem.id}>
+                  <h3>{elem.data}</h3>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     </>
   )

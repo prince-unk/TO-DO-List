@@ -1,6 +1,6 @@
-export const addTodo = () => {
+export const addTodo = (data) => {
     return {
-        type: 'ADD_TO_DO',
+        type: "ADD_TO_DO",
         payload: {
             id: new Date().getTime().toString(),
             data: data
@@ -8,12 +8,17 @@ export const addTodo = () => {
     }
 }
 
-export const removeTodo = () => {
+
+
+export const removeTodo = (data) => {
     return {
-        type: 'REMOVE_TO_DO',
+        type: "REMOVE_TO_DO",
         payload: {
             id: new Date().getTime().toString(),
             data: data
         }
     }
 }
+
+
+
